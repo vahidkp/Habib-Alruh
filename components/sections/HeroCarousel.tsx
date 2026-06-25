@@ -9,20 +9,13 @@ import { EditorialImage } from '@/components/ui/EditorialImage'
 
 const SLIDES = [
   {
-    seed: 'hero-saffron',
-    eyebrow: 'New Arrival',
-    title: 'Introducing\nSaffron Noir',
-    subtitle: 'Smoke, saffron, and gold — a fragrance that arrives before you do.',
-    cta: 'Discover Now',
-    href: '/products/saffron-noir-100ml',
-  },
-  {
     seed: 'hero-silence',
     eyebrow: 'Signature Series',
     title: 'Born from\nSilence',
     subtitle: 'Golden desert dunes captured in a single, lingering breath.',
     cta: 'Shop Collection',
     href: '/products?category=woody',
+    obj: 'object-[60%_60%] md:object-center',
   },
   {
     seed: 'hero-bloom',
@@ -31,6 +24,16 @@ const SLIDES = [
     subtitle: 'Night-blooming intensity for those who own the dark.',
     cta: 'Explore',
     href: '/products/midnight-jasmine-100ml',
+    obj: 'object-center',
+  },
+  {
+    seed: 'saffron-noir-100ml-2',
+    eyebrow: 'New Arrival',
+    title: 'Introducing\nSaffron Noir',
+    subtitle: 'Smoke, saffron, and gold — a fragrance that arrives before you do.',
+    cta: 'Discover Now',
+    href: '/products/saffron-noir-100ml',
+    obj: 'object-[55%_center] md:object-center',
   },
 ]
 
@@ -46,7 +49,7 @@ export function HeroCarousel() {
   const slide = SLIDES[index]
 
   return (
-    <section className="relative h-[100svh] w-full overflow-hidden bg-ink">
+    <section className="relative h-[78vh] min-h-[500px] w-full overflow-hidden bg-ink">
       <AnimatePresence mode="sync">
         <motion.div
           key={slide.seed}
@@ -62,6 +65,7 @@ export function HeroCarousel() {
             priority
             sizes="100vw"
             className="h-full w-full"
+            imgClassName={slide.obj}
           >
             <div className="absolute inset-0 animate-kenburns bg-transparent" />
           </EditorialImage>

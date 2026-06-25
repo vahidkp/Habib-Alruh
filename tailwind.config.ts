@@ -17,7 +17,10 @@ const config: Config = {
         surface: '#FFFFFF',
       },
       fontFamily: {
+        // Headings revert to the elegant serif (Playfair).
         display: ['var(--font-display)', 'Georgia', 'serif'],
+        // Geometric all-caps face (Round 8, currently Bebas) for prices, numbers, footer.
+        geo: ['"Round 8"', 'var(--font-round-alt)', 'var(--font-display)', 'Georgia', 'sans-serif'],
         body: ['var(--font-body)', 'system-ui', 'sans-serif'],
         accent: ['var(--font-accent)', 'Georgia', 'serif'],
       },
@@ -45,10 +48,19 @@ const config: Config = {
         shimmer: {
           '100%': { transform: 'translateX(100%)' },
         },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-6px)' },
+        },
+        'draw-in': {
+          '0%': { strokeDashoffset: '1', opacity: '0' },
+          '100%': { strokeDashoffset: '0', opacity: '1' },
+        },
       },
       animation: {
         marquee: 'marquee 24s linear infinite',
         kenburns: 'kenburns 8s ease-out forwards',
+        float: 'float 3.2s ease-in-out infinite',
       },
     },
   },

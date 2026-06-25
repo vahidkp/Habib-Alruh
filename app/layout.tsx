@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter, Cormorant_Garamond } from 'next/font/google'
+import { Playfair_Display, Inter, Cormorant_Garamond, Bebas_Neue } from 'next/font/google'
 import './globals.css'
+import { AnnouncementBar } from '@/components/shared/AnnouncementBar'
 import { Navbar } from '@/components/shared/Navbar'
 import { Footer } from '@/components/shared/Footer'
 import { CartDrawer } from '@/components/shared/CartDrawer'
+import { WhatsAppCta } from '@/components/shared/WhatsAppCta'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -20,6 +22,15 @@ const cormorant = Cormorant_Garamond({
   weight: ['400', '500', '600'],
   style: ['normal', 'italic'],
   variable: '--font-accent',
+  display: 'swap',
+})
+// Temporary stand-in for Round 8 (all-caps geometric display). Slotted just
+// behind 'Round 8' in the font stack, so the real font takes over the moment
+// /public/fonts/round-8.woff2 is added.
+const roundAlt = Bebas_Neue({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-round-alt',
   display: 'swap',
 })
 
@@ -57,7 +68,7 @@ const orgJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable} ${cormorant.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${inter.variable} ${cormorant.variable} ${roundAlt.variable}`}>
       <body>
         <a
           href="#main"
@@ -65,10 +76,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
+        <AnnouncementBar />
         <Navbar />
         <CartDrawer />
         <main id="main">{children}</main>
         <Footer />
+        <WhatsAppCta />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}

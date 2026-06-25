@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Round 8 by Atípo Foundry — display typeface.
+   Drop the web font into /public/fonts (round-8.woff2 preferred; .otf also works).
+   Until the file exists this @font-face simply falls back to Playfair, so the
+   site keeps working. Once present, every display heading switches to Round 8. */
+@font-face {
+  font-family: 'Round 8';
+  src:
+    url('/fonts/round-8.woff2') format('woff2'),
+    url('/fonts/round-8.otf') format('opentype');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* === COLOUR === */
   --color-primary-black: #0a0a0a;
@@ -103,4 +117,24 @@ body {
 :focus-visible {
   outline: 2px solid var(--color-gold);
   outline-offset: 2px;
+}
+
+/* Refine Lucide icons — delicate, uniform hairline stroke for a luxury feel.
+   CSS overrides Lucide's default 2px presentation attribute everywhere at once. */
+svg.lucide {
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* Slightly finer for the larger feature icons (trust strip, how-to-wear). */
+svg.lucide-truck,
+svg.lucide-rotate-ccw,
+svg.lucide-shield-check,
+svg.lucide-droplet,
+svg.lucide-layers,
+svg.lucide-snowflake,
+svg.lucide-sparkles,
+svg.lucide-flower-2,
+svg.lucide-tree-pine {
+  stroke-width: 1.25;
 }

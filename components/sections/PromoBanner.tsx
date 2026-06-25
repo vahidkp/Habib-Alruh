@@ -1,32 +1,33 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/Button'
 
+const PHRASES = [
+  'Buy 3, Pay for 2',
+  'Free Delivery Across the UAE',
+  'Crafted in Small Batches',
+  '15-Day Easy Returns',
+  'Hand-Wrapped Gifting',
+]
+
 export function PromoBanner() {
+  // Duplicated once so the -50% marquee loop is seamless.
+  const track = [...PHRASES, ...PHRASES]
+
   return (
-    <section className="overflow-hidden bg-ink py-16 text-center text-white md:py-20">
-      <div className="relative flex whitespace-nowrap">
-        <div className="flex animate-marquee">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <span
-              key={i}
-              className="mx-8 font-display text-5xl text-white/90 md:text-7xl"
-            >
-              BUY 3 PAY FOR 2 <span className="text-gold">·</span>
-            </span>
-          ))}
-        </div>
-        <div className="absolute top-0 flex animate-marquee" aria-hidden>
-          {Array.from({ length: 6 }).map((_, i) => (
-            <span key={i} className="mx-8 font-display text-5xl text-white/90 md:text-7xl">
-              BUY 3 PAY FOR 2 <span className="text-gold">·</span>
-            </span>
-          ))}
-        </div>
+    <section className="overflow-hidden border-y border-black/10 bg-ivory py-12 md:py-16">
+      <div className="flex w-max animate-marquee whitespace-nowrap [animation-duration:40s]">
+        {track.map((phrase, i) => (
+          <span key={i} className="flex items-center font-display text-4xl text-ink md:text-6xl lg:text-7xl">
+            {phrase}
+            <span className="mx-7 text-2xl text-gold md:mx-10 md:text-4xl">✦</span>
+          </span>
+        ))}
       </div>
-      <div className="container-site mt-8">
-        <p className="text-sm text-white/60">On selected fragrances — limited time</p>
+
+      <div className="container-site mt-8 text-center">
+        <p className="text-sm text-taupe">Limited-time offers on selected fragrances</p>
         <Link href="/products?collection=offer" className="mt-5 inline-block">
-          <Button variant="outline-light" size="md">
+          <Button variant="dark" size="md">
             Shop the Offer
           </Button>
         </Link>

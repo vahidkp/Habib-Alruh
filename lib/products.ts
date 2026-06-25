@@ -17,13 +17,25 @@ export interface Product {
   gender: Gender
   badges: BadgeKind[]
   notes: { top: string[]; middle: string[]; base: string[] }
+  concentration: 'Eau de Toilette' | 'Eau de Parfum' | 'Parfum'
   rating: number
   reviewCount: number
   inStock: boolean
 }
 
+/** Olfactory family labels for scent mapping. */
+export const FAMILY_LABEL: Record<Category, string> = {
+  fresh: 'Fresh · Aromatic',
+  citrus: 'Citrus · Bright',
+  floral: 'Floral',
+  woody: 'Woody',
+  oriental: 'Oriental · Amber',
+}
+
 const base = (over: Partial<Product> & Pick<Product, 'slug' | 'name' | 'category' | 'gender'>): Product => ({
   tagline: 'An ode to the senses',
+  concentration:
+    over.category === 'fresh' || over.category === 'citrus' ? 'Eau de Toilette' : 'Eau de Parfum',
   description:
     'A meticulously composed fragrance built around rare naturals and a long, warm dry-down. Crafted in small batches for depth and longevity.',
   story:
@@ -96,6 +108,7 @@ export const PRODUCTS: Product[] = [
     tagline: 'Resin and quiet luxury',
     category: 'woody',
     gender: 'him',
+    concentration: 'Parfum',
     badges: ['limited'],
     price: { '50ml': 349, '100ml': 549 },
     rating: 4.9,
@@ -171,6 +184,7 @@ export const PRODUCTS: Product[] = [
     tagline: 'Spiced, smoky, regal',
     category: 'oriental',
     gender: 'him',
+    concentration: 'Parfum',
     badges: ['limited'],
     price: { '50ml': 329, '100ml': 499 },
     rating: 4.8,

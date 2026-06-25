@@ -18,7 +18,7 @@ const ARTICLES = [
 
 export function JournalStrip() {
   return (
-    <section className="section-pad bg-surface">
+    <section className="section-pad border-t border-black/[0.08] bg-surface">
       <div className="container-site">
         <Reveal className="mb-10">
           <p className="eyebrow mb-2 text-taupe">From the</p>
@@ -36,9 +36,6 @@ export function JournalStrip() {
                 <h3 className="mt-2 font-display text-2xl leading-snug transition group-hover:text-gold">
                   {a.title}
                 </h3>
-                <span className="mt-3 inline-block text-sm font-medium uppercase tracking-[0.12em] text-ink">
-                  Read More →
-                </span>
               </Link>
             </Reveal>
           ))}

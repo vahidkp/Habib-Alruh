@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { useInView } from 'framer-motion'
 import Link from 'next/link'
 import { useCountUp } from '@/lib/hooks'
+import { Button } from '@/components/ui/Button'
 
 export function FootprintBanner() {
   const ref = useRef<HTMLDivElement>(null)
@@ -11,13 +12,13 @@ export function FootprintBanner() {
   const count = useCountUp(75, inView)
 
   return (
-    <section id="footprint" className="section-pad bg-ivory">
+    <section id="footprint" className="section-pad scroll-mt-24 border-t border-black/[0.08] bg-surface">
       <div ref={ref} className="container-site grid items-center gap-10 md:grid-cols-2">
         <div className="flex items-baseline gap-3">
-          <span className="font-display text-[120px] leading-none text-ink md:text-[180px]">
+          <span className="font-geo text-[120px] leading-none text-ink md:text-[180px]">
             {count}
           </span>
-          <span className="font-display text-6xl text-gold md:text-8xl">+</span>
+          <span className="font-geo text-6xl text-gold md:text-8xl">+</span>
         </div>
         <div>
           <p className="eyebrow mb-3 text-gold">Global Footprint</p>
@@ -28,11 +29,10 @@ export function FootprintBanner() {
             From Dubai to Milan, our scents travel the world — carried in boutiques,
             ateliers, and the homes of those who notice the details.
           </p>
-          <Link
-            href="/#footprint"
-            className="mt-5 inline-block border-b border-gold pb-1 text-sm font-medium uppercase tracking-[0.12em] text-ink transition hover:text-gold"
-          >
-            Locate a Store
+          <Link href="/#footprint" className="mt-7 inline-block">
+            <Button variant="dark" size="lg">
+              Locate a Boutique
+            </Button>
           </Link>
         </div>
       </div>

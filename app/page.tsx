@@ -4,7 +4,6 @@ import { PromoBanner } from '@/components/sections/PromoBanner'
 import { FootprintBanner } from '@/components/sections/FootprintBanner'
 import { SignatureSeries } from '@/components/sections/SignatureSeries'
 import { LuxeCollection } from '@/components/sections/LuxeCollection'
-import { GiftCTA } from '@/components/sections/GiftCTA'
 import { ShopByGender } from '@/components/sections/ShopByGender'
 import { MYOPSection } from '@/components/sections/MYOPSection'
 import { PressBanner } from '@/components/sections/PressBanner'
@@ -22,7 +21,6 @@ export default function HomePage() {
       <FootprintBanner />
       <SignatureSeries />
       <LuxeCollection />
-      <GiftCTA />
       <ShopByGender />
       <MYOPSection />
       <PressBanner />

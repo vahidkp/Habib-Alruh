@@ -1,13 +1,12 @@
-import Link from 'next/link'
 import { EditorialImage } from '@/components/ui/EditorialImage'
 import { Reveal } from '@/components/ui/Reveal'
 
 export function BrandStory() {
   return (
-    <section id="brand-story" className="section-pad bg-ivory">
-      <div className="container-site grid items-center gap-12 md:grid-cols-2">
+    <section id="brand-story" className="section-pad scroll-mt-24 border-t border-black/[0.08] bg-ivory">
+      <div className="container-site grid items-center gap-12 md:grid-cols-[0.72fr_1.28fr] md:gap-16">
         <Reveal>
-          <EditorialImage seed="brand-atelier" className="aspect-[4/5] w-full" label="The Atelier" />
+          <EditorialImage seed="brand-atelier" className="mx-auto aspect-[4/5] w-full max-w-[360px]" label="The Atelier" />
         </Reveal>
         <Reveal delay={0.1}>
           <p className="eyebrow mb-4 text-gold">Our Philosophy</p>
@@ -28,12 +27,6 @@ export function BrandStory() {
               slowly, the way the best stories do.
             </p>
           </div>
-          <Link
-            href="/#brand-story"
-            className="mt-6 inline-block border-b border-gold pb-1 text-sm font-medium uppercase tracking-[0.12em] text-ink transition hover:text-gold"
-          >
-            About Us
-          </Link>
         </Reveal>
       </div>
     </section>

@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
 import { Droplet, Layers, Snowflake } from 'lucide-react'
 import { ProductHero } from '@/components/pdp/ProductHero'
 import { NotesPyramid } from '@/components/pdp/NotesPyramid'
+import { FragranceStory } from '@/components/pdp/FragranceStory'
+import { FAQ } from '@/components/pdp/FAQ'
 import { ReviewsSection } from '@/components/pdp/ReviewsSection'
 import { ProductCard } from '@/components/ui/ProductCard'
-import { EditorialImage } from '@/components/ui/EditorialImage'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { PRODUCTS, getProductBySlug, getRelated } from '@/lib/products'
 
@@ -70,29 +70,14 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <nav className="container-site pt-6 text-xs text-taupe" aria-label="Breadcrumb">
-        <Link href="/">Home</Link> <span className="mx-1">/</span>{' '}
-        <Link href="/products">Fragrances</Link> <span className="mx-1">/</span>{' '}
-        <span className="text-ink">{product.name}</span>
-      </nav>
-
       <ProductHero product={product} />
-
-      {/* Scent story */}
-      <section className="relative mt-20 overflow-hidden py-24 text-white md:py-32">
-        <EditorialImage seed={`${product.slug}-story`} rounded={false} className="absolute inset-0 h-full w-full" />
-        <div className="absolute inset-0 bg-ink/75" />
-        <div className="container-site relative max-w-2xl text-center">
-          <p className="eyebrow mb-3 text-gold">The Story</p>
-          <h2 className="font-display text-3xl md:text-4xl">The Story Behind {product.name}</h2>
-          <p className="mt-6 text-lg leading-relaxed text-white/80">{product.story}</p>
-        </div>
-      </section>
 
       <NotesPyramid notes={product.notes} />
 
+      <FragranceStory product={product} />
+
       {/* How to wear */}
-      <section className="section-pad bg-ivory">
+      <section className="section-pad border-t border-black/[0.08] bg-ivory">
         <div className="container-site">
           <h2 className="mb-10 text-center font-display text-3xl md:text-4xl">How to Wear</h2>
           <div className="grid gap-6 md:grid-cols-3">
@@ -118,6 +103,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </section>
+
+      <FAQ product={product} />
 
       <ReviewsSection product={product} />
 

@@ -29,6 +29,7 @@ export function EditorialImage({
   rounded = true,
   priority = false,
   sizes = '(max-width: 768px) 100vw, 50vw',
+  imgClassName,
   children,
 }: {
   seed?: string
@@ -37,6 +38,7 @@ export function EditorialImage({
   rounded?: boolean
   priority?: boolean
   sizes?: string
+  imgClassName?: string
   children?: React.ReactNode
 }) {
   if (IMAGES.has(seed)) {
@@ -54,7 +56,7 @@ export function EditorialImage({
           fill
           sizes={sizes}
           priority={priority}
-          className="object-cover"
+          className={cn('object-cover', imgClassName)}
         />
         {children}
       </div>

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Droplet, Layers, Snowflake } from 'lucide-react'
 import { ProductHero } from '@/components/pdp/ProductHero'
 import { NotesPyramid } from '@/components/pdp/NotesPyramid'
 import { FragranceStory } from '@/components/pdp/FragranceStory'
@@ -23,12 +22,6 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     openGraph: { title: product.name, description: product.tagline },
   }
 }
-
-const HOW_TO_WEAR = [
-  { icon: Droplet, title: 'Apply to pulse points', sub: 'Wrists, neck, behind the ears.' },
-  { icon: Layers, title: 'Layer for longevity', sub: 'Pair with the matching body oil.' },
-  { icon: Snowflake, title: 'Store cool & dark', sub: 'Away from heat and direct light.' },
-]
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const product = getProductBySlug(params.slug)
@@ -76,24 +69,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
       <FragranceStory product={product} />
 
-      {/* How to wear */}
-      <section className="section-pad border-t border-black/[0.08] bg-ivory">
-        <div className="container-site">
-          <h2 className="mb-10 text-center font-display text-3xl md:text-4xl">How to Wear</h2>
-          <div className="grid gap-6 md:grid-cols-3">
-            {HOW_TO_WEAR.map((s) => (
-              <div key={s.title} className="rounded-card bg-surface p-7 text-center shadow-card">
-                <s.icon size={28} className="mx-auto text-gold" strokeWidth={1.5} />
-                <h3 className="mt-4 font-display text-xl">{s.title}</h3>
-                <p className="mt-2 text-sm text-taupe">{s.sub}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Complementary products */}
-      <section className="section-pad bg-surface">
+      <section className="section-pad border-t border-black/[0.08] bg-surface">
         <div className="container-site">
           <SectionHeader lead="Pair It" trail="With" className="mb-8" />
           <div className="grid grid-cols-2 gap-4 md:grid-cols-4">

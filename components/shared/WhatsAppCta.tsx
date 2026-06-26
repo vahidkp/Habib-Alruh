@@ -1,5 +1,5 @@
-// Replace with the real Habib Alruh WhatsApp business number (intl format, no +).
-const WHATSAPP_NUMBER = '971500000000'
+// Habib Alruh WhatsApp business number (intl format, no +).
+const WHATSAPP_NUMBER = '971563273213'
 const MESSAGE = "Hello Habib Alruh! I'd love to know more about your fragrances."
 
 export function WhatsAppCta() {

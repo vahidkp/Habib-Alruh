@@ -7,20 +7,13 @@ import {
   Heart,
   Share2,
   Truck,
-  RotateCcw,
-  ShieldCheck,
   Eye,
-  Zap,
-  Leaf,
-  Sparkles,
   BadgeCheck,
   Star,
   Copy,
   Check,
-  Search,
   Ticket,
 } from 'lucide-react'
-import { AnimatePresence, motion } from 'framer-motion'
 import { Button } from '@/components/ui/Button'
 import { Stars } from '@/components/ui/Stars'
 import { EditorialImage } from '@/components/ui/EditorialImage'
@@ -31,13 +24,6 @@ import { useHydrated } from '@/lib/hooks'
 import { formatAED, cn } from '@/lib/utils'
 import { FAMILY_LABEL, type Category, type Product, type Size } from '@/lib/products'
 
-const PERSONALITY: Record<Category, string[]> = {
-  fresh: ['Crisp', 'Energetic', 'Effortless'],
-  citrus: ['Bright', 'Playful', 'Uplifting'],
-  floral: ['Romantic', 'Graceful', 'Luminous'],
-  woody: ['Bold', 'Grounded', 'Confident'],
-  oriental: ['Mysterious', 'Sensual', 'Opulent'],
-}
 const INTENSITY: Record<Category, number> = { fresh: 2, citrus: 2, floral: 3, woody: 4, oriental: 5 }
 const INTENSITY_LABEL = ['', 'Subtle', 'Light', 'Moderate', 'Strong', 'Intense']
 
@@ -50,46 +36,6 @@ function hash(s: string) {
   let h = 0
   for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0
   return Math.abs(h)
-}
-
-function Accordion({
-  icon: Icon,
-  title,
-  defaultOpen = false,
-  children,
-}: {
-  icon: typeof Zap
-  title: string
-  defaultOpen?: boolean
-  children: React.ReactNode
-}) {
-  const [open, setOpen] = useState(defaultOpen)
-  return (
-    <div className="border-b border-black/10">
-      <button onClick={() => setOpen((o) => !o)} aria-expanded={open} className="flex w-full items-center justify-between py-4">
-        <span className="flex items-center gap-3">
-          <Icon size={18} className="text-gold" />
-          <span className="text-sm font-medium uppercase tracking-[0.12em]">{title}</span>
-        </span>
-        <motion.span animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.25 }} className="text-taupe">
-          <Plus size={16} />
-        </motion.span>
-      </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="pb-5 text-sm leading-relaxed text-taupe">{children}</div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  )
 }
 
 export function ProductHero({ product }: { product: Product }) {
@@ -125,8 +71,6 @@ export function ProductHero({ product }: { product: Product }) {
   const gallery = [product.slug, `${product.slug}-2`, `${product.slug}-3`, `${product.slug}-4`]
   const viewers = 8 + (hash(product.slug) % 22)
   const intensity = INTENSITY[product.category]
-  const traits = PERSONALITY[product.category]
-  const noteLabels: Record<string, string> = { top: 'Top Notes', middle: 'Heart Notes', base: 'Base Notes' }
 
   const copyCode = (code: string) => {
     navigator.clipboard?.writeText(code).catch(() => {})
@@ -173,9 +117,6 @@ export function ProductHero({ product }: { product: Product }) {
                 <Heart size={16} className={cn(wished && 'fill-amber text-amber')} />
               </button>
             </div>
-            <span className="absolute bottom-4 right-4 grid h-9 w-9 place-items-center rounded-full bg-white/90 text-taupe shadow-md">
-              <Search size={15} />
-            </span>
           </div>
         </div>
 
@@ -267,24 +208,29 @@ export function ProductHero({ product }: { product: Product }) {
 
           {/* Quantity + Add to cart */}
           <div className="mt-6 flex items-stretch gap-3">
-            <div className="flex items-center rounded-card border border-black/20">
-              <button onClick={() => setQty((q) => Math.max(1, q - 1))} aria-label="Decrease quantity" className="grid h-12 w-12 place-items-center hover:text-gold">
-                <Minus size={16} />
+            <div className="flex items-center self-stretch rounded-card border border-black/20">
+              <button onClick={() => setQty((q) => Math.max(1, q - 1))} aria-label="Decrease quantity" className="grid h-full w-9 place-items-center hover:text-gold">
+                <Minus size={15} />
               </button>
-              <span className="w-10 text-center">{qty}</span>
-              <button onClick={() => setQty((q) => q + 1)} aria-label="Increase quantity" className="grid h-12 w-12 place-items-center hover:text-gold">
-                <Plus size={16} />
+              <span className="w-7 text-center text-sm">{qty}</span>
+              <button onClick={() => setQty((q) => q + 1)} aria-label="Increase quantity" className="grid h-full w-9 place-items-center hover:text-gold">
+                <Plus size={15} />
               </button>
             </div>
-            <Button variant="gold" size="lg" className="flex-1" onClick={addToCart}>
-              Add to Cart · {formatAED(price * qty)}
+            <Button variant="gold" size="lg" className="flex-1 whitespace-nowrap" onClick={addToCart}>
+              Add to Cart
             </Button>
           </div>
           <Button variant="dark" size="lg" className="mt-3 w-full" onClick={() => { addToCart(); openCart() }}>
             Buy It Now
           </Button>
-          <p className="mt-3 text-xs text-taupe">
-            or 4 interest-free payments of <span className="font-semibold text-ink">{formatAED(Math.round(price / 4))}</span> with Tabby &amp; Tamara
+          <p className="mt-3 flex items-center gap-x-1.5 whitespace-nowrap text-xs text-taupe">
+            Pay in 4 interest-free with
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/payment/tabby.svg" alt="Tabby" className="h-4 w-auto" />
+            &amp;
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/payment/tamara.svg" alt="Tamara" className="h-2.5 w-auto" />
           </p>
 
           {/* Delivery estimate */}
@@ -330,58 +276,6 @@ export function ProductHero({ product }: { product: Product }) {
             <PaymentIcons />
           </div>
 
-          {/* Accordions */}
-          <div className="mt-7">
-            <Accordion icon={Zap} title="Intensity" defaultOpen>
-              <div className="flex items-center gap-1.5">
-                {[1, 2, 3, 4, 5].map((n) => (
-                  <span key={n} className={cn('h-1.5 w-8 rounded-full', n <= intensity ? 'bg-gold' : 'bg-black/10')} />
-                ))}
-                <span className="ml-3 font-medium text-ink">{INTENSITY_LABEL[intensity]}</span>
-              </div>
-              <p className="mt-3">
-                A {INTENSITY_LABEL[intensity].toLowerCase()} {product.category} sillage — projecting close to the skin
-                early on, then settling into a warm, lasting trail.
-              </p>
-            </Accordion>
-
-            <Accordion icon={Leaf} title="Notes &amp; Composition">
-              <div className="mb-3 space-y-2 border-b border-black/10 pb-3">
-                <div className="flex justify-between gap-6">
-                  <span className="shrink-0 text-xs uppercase tracking-[0.12em] text-taupe">Olfactory Family</span>
-                  <span className="text-right capitalize text-ink/85">{FAMILY_LABEL[product.category]}</span>
-                </div>
-                <div className="flex justify-between gap-6">
-                  <span className="shrink-0 text-xs uppercase tracking-[0.12em] text-taupe">Concentration</span>
-                  <span className="text-right text-ink/85">{product.concentration}</span>
-                </div>
-              </div>
-              <div className="space-y-2">
-                {(['top', 'middle', 'base'] as const).map((t) => (
-                  <div key={t} className="flex justify-between gap-6 border-b border-black/5 pb-2 last:border-0">
-                    <span className="shrink-0 text-xs uppercase tracking-[0.12em] text-taupe">{noteLabels[t]}</span>
-                    <span className="text-right text-ink/85">{product.notes[t].join(', ')}</span>
-                  </div>
-                ))}
-              </div>
-            </Accordion>
-
-            <Accordion icon={Sparkles} title="Personality">
-              <div className="flex flex-wrap gap-2">
-                {traits.map((tr) => (
-                  <span key={tr} className="rounded-full border border-black/15 px-3 py-1 text-xs text-ink/85">{tr}</span>
-                ))}
-              </div>
-              <p className="mt-3">{product.description}</p>
-            </Accordion>
-          </div>
-
-          {/* Trust */}
-          <div className="mt-7 grid grid-cols-3 gap-3 border-t border-black/10 pt-6 text-center text-[11px] text-taupe">
-            <div className="flex flex-col items-center gap-1.5"><Truck size={20} className="text-gold" /> Free UAE Delivery</div>
-            <div className="flex flex-col items-center gap-1.5"><RotateCcw size={20} className="text-gold" /> 15-Day Returns</div>
-            <div className="flex flex-col items-center gap-1.5"><ShieldCheck size={20} className="text-gold" /> Secure Checkout</div>
-          </div>
         </div>
       </div>
     </section>

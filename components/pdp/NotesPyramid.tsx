@@ -1,63 +1,46 @@
-import { Sparkles, Flower2, TreePine } from 'lucide-react'
 import { Reveal } from '@/components/ui/Reveal'
+import { EditorialImage } from '@/components/ui/EditorialImage'
 import type { Product } from '@/lib/products'
 
 const TIERS = [
-  {
-    key: 'top',
-    label: 'Top Notes',
-    blurb: 'The first impression — bright and fleeting.',
-    icon: Sparkles,
-    width: 'max-w-[300px]',
-  },
-  {
-    key: 'middle',
-    label: 'Heart Notes',
-    blurb: 'The character that unfolds after a while.',
-    icon: Flower2,
-    width: 'max-w-[460px]',
-  },
-  {
-    key: 'base',
-    label: 'Base Notes',
-    blurb: 'The lasting trail that lingers on skin.',
-    icon: TreePine,
-    width: 'max-w-[620px]',
-  },
+  { key: 'top', label: 'Top Notes' },
+  { key: 'middle', label: 'Heart Notes' },
+  { key: 'base', label: 'Base Notes' },
 ] as const
+
+// note → image seed; drop public/images/note-<slug>.jpg (+ add to lib/images.ts)
+// to replace the swatch with a real ingredient photo automatically.
+const noteSeed = (s: string) => 'note-' + s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 
 export function NotesPyramid({ notes }: { notes: Product['notes'] }) {
   return (
-    <section className="section-pad bg-surface">
-      <div className="container-site text-center">
-        <p className="eyebrow mb-2 text-gold">The Composition</p>
-        <h2 className="font-display text-3xl md:text-4xl">Notes Pyramid</h2>
+    <section className="section-pad border-t border-black/[0.08] bg-surface">
+      <div className="container-site">
+        <div className="mb-12 text-center">
+          <p className="eyebrow mb-2 text-gold">The Composition</p>
+          <h2 className="font-display text-3xl md:text-4xl">Fragrance Notes</h2>
+        </div>
 
-        <div className="mt-14 flex flex-col items-center gap-4">
-          {TIERS.map((tier, i) => (
-            <Reveal key={tier.key} delay={i * 0.15} className={`w-full ${tier.width}`}>
-              <div className="group relative rounded-card border border-black/10 bg-ivory px-6 pb-6 pt-9 transition-colors hover:border-gold/40">
-                {/* Animated icon medallion */}
-                <span
-                  className="absolute -top-6 left-1/2 grid h-12 w-12 -translate-x-1/2 place-items-center rounded-full border border-gold/30 bg-surface text-gold shadow-card animate-float"
-                  style={{ animationDelay: `${i * 0.4}s` }}
-                >
-                  <tier.icon size={22} className="transition-transform duration-500 group-hover:scale-110" />
-                </span>
+        <Reveal>
+          <div className="grid gap-12 md:grid-cols-3 md:divide-x md:divide-black/10">
+            {TIERS.map((tier) => (
+              <div key={tier.key} className="text-center md:px-4">
+                <h3 className="font-display text-xl">{tier.label}</h3>
 
-                <p className="eyebrow mb-1 text-taupe">{tier.label}</p>
-                <p className="mb-4 text-xs text-taupe/80">{tier.blurb}</p>
-                <div className="flex flex-wrap justify-center gap-2">
+                <div className="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-8">
                   {notes[tier.key].map((n) => (
-                    <span key={n} className="rounded-full bg-surface px-3.5 py-1.5 text-sm shadow-sm ring-1 ring-black/5">
-                      {n}
-                    </span>
+                    <figure key={n} className="w-20">
+                      <div className="mx-auto h-[72px] w-[72px] overflow-hidden rounded-full bg-ivory ring-1 ring-black/10 md:h-20 md:w-20">
+                        <EditorialImage seed={noteSeed(n)} rounded={false} className="h-full w-full" />
+                      </div>
+                      <figcaption className="mt-3 text-sm text-ink">{n}</figcaption>
+                    </figure>
                   ))}
                 </div>
               </div>
-            </Reveal>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   )

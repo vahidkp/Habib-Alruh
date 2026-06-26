@@ -37,7 +37,7 @@ export function Footer() {
           <address className="mt-5 space-y-1 text-sm not-italic text-white/60">
             <p>Boutique 12, Dubai Design District, Dubai, UAE</p>
             <p>
-              <a href="tel:+97140000000" className="transition hover:text-white">+971 4 000 0000</a>
+              <a href="tel:+971563273213" className="transition hover:text-white">+971 56 327 3213</a>
               {' · '}
               <a href="mailto:hello@habibalruh.ae" className="transition hover:text-white">hello@habibalruh.ae</a>
             </p>

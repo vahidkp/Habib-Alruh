@@ -308,3 +308,66 @@ component, keyed by a `seed`. To use your generated photos instead:
 | PLP hero | 1 |
 | Products (12 × 5) | 60 |
 | **Total** | **75** |
+
+---
+
+# 11. Fragrance Notes — Ingredient Tiles (PDP)
+
+The product page now shows each scent note as a round ingredient tile. To replace the
+gradient swatches with real photos, generate each below, save it to `public/images/`
+with the exact filename, and add its name (without `.jpg`) to the `IMAGES` set in
+`lib/images.ts`. **Aspect ratio: 1:1 square.**
+
+### 🎨 Note-tile style (prepend to each)
+> A single fragrance-note ingredient, photographed as a clean product cut-out, centred,
+> on a plain soft-white / very light ivory background, soft natural studio light, gentle
+> shadow, photorealistic and crisp, no text or props. Warm, premium, editorial.
+
+| Filename | Prompt subject |
+|---|---|
+| `note-amber.jpg` | a glowing translucent chunk of amber resin |
+| `note-bergamot.jpg` | a whole bergamot citrus fruit, one halved |
+| `note-black-currant.jpg` | a small cluster of blackcurrant berries with a leaf |
+| `note-cardamom.jpg` | a few green cardamom pods, one split open |
+| `note-cedar.jpg` | a slice of cedar wood with visible grain and bark |
+| `note-cinnamon.jpg` | two or three rolled cinnamon sticks |
+| `note-coconut-milk.jpg` | a cracked coconut half with a splash of coconut milk |
+| `note-cypress.jpg` | a fresh green cypress sprig |
+| `note-damask-rose.jpg` | a single pink damask rose in full bloom |
+| `note-driftwood.jpg` | a smooth weathered piece of pale driftwood |
+| `note-fig.jpg` | a ripe purple fig, one halved to show the flesh |
+| `note-fig-leaf.jpg` | a single broad green fig leaf |
+| `note-grapefruit.jpg` | a pink grapefruit, one half cut to show segments |
+| `note-green-leaves.jpg` | a few fresh dewy green leaves |
+| `note-honey.jpg` | a wooden honey dipper drizzling golden honey over honeycomb |
+| `note-jasmine.jpg` | a few delicate white jasmine flowers with green leaves |
+| `note-jasmine-sambac.jpg` | white jasmine sambac blossoms with buds |
+| `note-juniper.jpg` | a juniper sprig with blue-black berries |
+| `note-lavender.jpg` | a small bundle of purple lavender sprigs |
+| `note-leather.jpg` | a folded swatch of soft tan leather |
+| `note-lemon.jpg` | a bright lemon, one halved |
+| `note-lily.jpg` | a single white lily bloom |
+| `note-lychee.jpg` | two lychee fruits, one peeled to show translucent flesh |
+| `note-mandarin.jpg` | a mandarin orange with a leaf |
+| `note-musk.jpg` | an abstract wisp of soft white musk — clean white cotton-like form |
+| `note-neroli.jpg` | white neroli (orange-blossom) flowers with buds |
+| `note-nutmeg.jpg` | a couple of whole nutmeg seeds, one cracked |
+| `note-orris.jpg` | a pale iris flower with a piece of orris root |
+| `note-oud.jpg` | dark resinous oud (agarwood) chips |
+| `note-patchouli.jpg` | a few deep green patchouli leaves |
+| `note-pear.jpg` | a golden nashi pear with a leaf |
+| `note-peony.jpg` | a soft blush peony in full bloom |
+| `note-petitgrain.jpg` | an orange-tree twig with fresh green leaves |
+| `note-pink-pepper.jpg` | a small pile of pink peppercorns |
+| `note-plum.jpg` | a dark purple plum, one halved |
+| `note-rose.jpg` | a single deep red rose in bloom |
+| `note-saffron.jpg` | a delicate pile of crimson saffron threads |
+| `note-sage.jpg` | a few fresh grey-green sage leaves |
+| `note-sandalwood.jpg` | sandalwood blocks with fine shavings |
+| `note-sea-salt.jpg` | a small heap of coarse sea-salt crystals |
+| `note-tobacco-leaf.jpg` | a dried golden-brown tobacco leaf, curled |
+| `note-tonka.jpg` | a few dark tonka beans |
+| `note-tuberose.jpg` | white tuberose flowers on a stem |
+| `note-vanilla.jpg` | two vanilla pods with a single vanilla orchid flower |
+| `note-vetiver.jpg` | a bundle of dried vetiver roots |
+| `note-white-musk.jpg` | an abstract soft white-musk form — white petals and a airy haze |

@@ -15,7 +15,7 @@ const SLIDES = [
     subtitle: 'Golden desert dunes captured in a single, lingering breath.',
     cta: 'Shop Collection',
     href: '/products?category=woody',
-    obj: 'object-[60%_60%] md:object-center',
+    obj: 'object-[70%_center] md:object-center',
   },
   {
     seed: 'hero-bloom',
@@ -49,7 +49,7 @@ export function HeroCarousel() {
   const slide = SLIDES[index]
 
   return (
-    <section className="relative h-[78vh] min-h-[500px] w-full overflow-hidden bg-ink">
+    <section className="relative h-[88svh] min-h-[600px] w-full overflow-hidden bg-ink md:h-[90vh]">
       <AnimatePresence mode="sync">
         <motion.div
           key={slide.seed}
@@ -69,7 +69,7 @@ export function HeroCarousel() {
           >
             <div className="absolute inset-0 animate-kenburns bg-transparent" />
           </EditorialImage>
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/30 to-ink/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
         </motion.div>
       </AnimatePresence>
 

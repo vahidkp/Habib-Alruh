@@ -101,9 +101,9 @@ export function ReviewsSection({ product }: { product: Product }) {
       {/* Write review modal */}
       <AnimatePresence>
         {open && (
-          <>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
             <motion.div
-              className="fixed inset-0 z-50 bg-black/60"
+              className="absolute inset-0 bg-black/60"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -112,7 +112,7 @@ export function ReviewsSection({ product }: { product: Product }) {
             <motion.div
               role="dialog"
               aria-modal="true"
-              className="fixed left-1/2 top-1/2 z-50 w-[92%] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-modal bg-surface p-6"
+              className="relative z-10 w-full max-w-md rounded-modal bg-surface p-6"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
@@ -146,7 +146,7 @@ export function ReviewsSection({ product }: { product: Product }) {
                 </Button>
               </form>
             </motion.div>
-          </>
+          </div>
         )}
       </AnimatePresence>
     </section>
